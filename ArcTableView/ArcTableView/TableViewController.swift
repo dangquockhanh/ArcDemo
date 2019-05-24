@@ -39,7 +39,7 @@ class TableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         cell.textLabel?.text = String(numbers[indexPath.row])
         
@@ -51,20 +51,19 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             numbers.remove(at: indexPath.row) // xoá tại vị trí hàng
-            if numbers.isEmpty {
+            if numbers.isEmpty { // nếu như không có giá trị
                 tableView.tableFooterView = noContentView
             }else {
                 tableView.tableFooterView = UIView()
             }
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        
-    }
+     }
 }
 
 // 4.quản lý hiển sau khi ấn switch
 class CharactersDataSource: NSObject, UITableViewDataSource {
-    weak var noContenView: UIView?
+   weak var noContenView: UIView?
     var character = ["a", "b", "c"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,7 +71,7 @@ class CharactersDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = character[indexPath.row]
         return cell
     }
@@ -89,6 +88,5 @@ class CharactersDataSource: NSObject, UITableViewDataSource {
         }
         
     }
-    
     
 }
