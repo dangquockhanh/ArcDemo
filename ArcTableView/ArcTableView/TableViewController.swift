@@ -16,12 +16,13 @@ class TableViewController: UITableViewController {
     var characterDatasource = CharactersDataSource()
     override func viewDidLoad() {
         super.viewDidLoad()
-        noContentView.frame = view.bounds
+        noContentView.frame = view.bounds //2
         characterDatasource.noContenView = noContentView
         
     }
     
     @IBAction func onClickSwitch(_ sender: UISwitch) {
+        //5
         tableView.dataSource = sender.isOn ? self : characterDatasource
         tableView.reloadData()
         
@@ -30,7 +31,7 @@ class TableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    
+    //3
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return numbers.count
@@ -61,7 +62,7 @@ class TableViewController: UITableViewController {
     }
 }
 
-// quản lý hiển sau khi ấn switch
+// 4.quản lý hiển sau khi ấn switch
 class CharactersDataSource: NSObject, UITableViewDataSource {
     weak var noContenView: UIView?
     var character = ["a", "b", "c"]
